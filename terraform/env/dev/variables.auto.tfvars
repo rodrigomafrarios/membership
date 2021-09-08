@@ -32,3 +32,6 @@ dynamodb_add_organization_actions = [
   "ec2:DescribeNetworkInterfaces",
   "autoscaling:CompleteLifecycleAction"
 ]
+
+# list organizations
+dynamodb_list_organizations_actions = ["dynamodb:Scan"]

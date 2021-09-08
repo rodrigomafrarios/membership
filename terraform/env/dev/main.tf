@@ -32,6 +32,7 @@ module "organization" {
   source      = "../../services/organization"
   account_id  = module.global_variables.account_id
   dynamodb_add_organization_actions = var.dynamodb_add_organization_actions
+  dynamodb_list_organizations_actions = var.dynamodb_list_organizations_actions
   sample_organization_id = var.sample_organization_id
   sample_organization_name = var.sample_organization_name
 }

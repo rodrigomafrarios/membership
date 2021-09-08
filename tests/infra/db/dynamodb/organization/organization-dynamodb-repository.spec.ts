@@ -33,4 +33,16 @@ describe('OrganizationDynamodbRepository', () => {
       expect(response).toBeTruthy()
     })
   })
+  describe('list()', () => {
+    it('should list organizations', async () => {
+      const { sut } = makeSut()
+      await sut.add({
+        organizationId: 'any-organization-id',
+        name: 'any-name'
+      })
+
+      const organizations = await sut.list()
+      expect(organizations.length).toBe(1)
+    })
+  })
 })

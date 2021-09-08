@@ -1,5 +1,6 @@
 import { OrganizationModel } from '@/domain/models/organization'
 import { AddOrganization, AddOrganizationParams } from '@/domain/usecases/organization/add-organization/add-organization'
+import { ListOrganizations } from '@/domain/usecases/organization/list-organizations/list-organizations'
 
 export const mockAddOrganizationParams = (): AddOrganizationParams => ({
   organizationId: 'any-org-id',
@@ -19,4 +20,13 @@ export const mockAddOrganization = (): AddOrganization => {
     }
   }
   return new AddOrganizationStub()
+}
+
+export const mockListOrganizations = (): ListOrganizations => {
+  class ListOrganizationsStub implements ListOrganizations {
+    async list (): Promise<OrganizationModel[]> {
+      return Promise.resolve([mockOrganization()])
+    }
+  }
+  return new ListOrganizationsStub()
 }

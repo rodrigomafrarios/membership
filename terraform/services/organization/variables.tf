@@ -14,6 +14,10 @@ variable "dynamodb_add_organization_actions" {
   
 }
 
+variable "dynamodb_list_organizations_actions" {
+  
+}
+
 variable "sample_organization_id" {
   
 }
