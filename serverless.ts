@@ -1,18 +1,28 @@
 import type { AWS } from '@serverless/typescript'
 
-import hello from '@functions/hello'
+import { signUp } from './src/main/functions'
 
 const serverlessConfiguration: AWS = {
   service: 'membership',
   frameworkVersion: '2',
   custom: {
-    webpack: {
-      webpackConfig: './webpack.config.js',
-      includeModules: true
-    }
+    dynamodb: {
+      stages: ['test'],
+      start: {
+        port: 8000,
+        inMemory: true,
+        migrate: true
+      }
+    },
+    stage: "${opt:stage, self:provider.stage}"
   },
-  plugins: ['serverless-webpack'],
+  plugins: ['serverless-dynamodb-local', 'serverless-offline', 'serverless-plugin-typescript'],
+  package: {
+    individually: true,
+  },
   provider: {
+    profile: 'dev',
+    stage: 'dev',
     name: 'aws',
     runtime: 'nodejs14.x',
     apiGateway: {
@@ -24,8 +34,7 @@ const serverlessConfiguration: AWS = {
     },
     lambdaHashingVersion: '20201221'
   },
-  // import the function via paths
-  functions: { hello }
+  functions: { signUp }
 }
 
 module.exports = serverlessConfiguration

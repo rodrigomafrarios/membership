@@ -1,9 +1,10 @@
 {
   "compilerOptions": {
-    "baseUrl": ".",
+    "baseUrl": "src",
+    "rootDirs": ["src", "tests"],
     "paths": {
-      "@functions/*": ["src/functions/*"],
-      "@libs/*": ["src/libs/*"]
+      "@/*": ["*"],
+      "@/tests/*": ["../tests/*"],
     }
   }
 }

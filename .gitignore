@@ -2,15 +2,17 @@
 logs
 *.log
 npm-debug.log*
-yarn-debug.log*
-yarn-error.log*
-lerna-debug.log*
 
 # Diagnostic reports (https://nodejs.org/api/report.html)
 report.[0-9]*.[0-9]*.[0-9]*.[0-9]*.json
 
 # Dependency directories
 node_modules/
+
+#webpack
+.webpack
+.build
+
 
 # Optional npm cache directory
 .npm
@@ -28,3 +30,12 @@ node_modules/
 
 # DynamoDB Local files
 .dynamodb/
+
+# Local .terraform directories
+**/.terraform
+
+# .tfstate files
+**/*.tfstate
+**/*.tfstate.*
+
+**/*.lock.hcl
