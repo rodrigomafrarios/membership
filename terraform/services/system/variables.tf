@@ -33,3 +33,11 @@ variable "sample_name" {
 variable "sample_jwt_secret" {
 
 }
+
+variable "sample_organization_id" {
+  
+}
+
+variable "sample_organization_name" {
+  
+}

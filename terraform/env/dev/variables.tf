@@ -14,6 +14,10 @@ variable "dynamodb_load_user_actions" {
   
 }
 
+variable "dynamodb_add_organization_actions" {
+  
+}
+
 variable "sample_id" {
 
 }
@@ -32,4 +36,12 @@ variable "sample_name" {
 
 variable "sample_jwt_secret" {
 
+}
+
+variable "sample_organization_id" {
+  
+}
+
+variable "sample_organization_name" {
+  
 }

@@ -30,6 +30,13 @@ export const ok = (data: any): HttpResponse => {
 	}
 }
 
+export const created = (): HttpResponse => {
+	return {
+		statusCode: 201,
+		body: null
+	}
+}
+
 export const forbidden = (error: Error): HttpResponse => {
 	return {
 		statusCode: 403,

@@ -18,3 +18,17 @@ dynamodb_list_users_actions = ["dynamodb:Scan"]
 
 #load user
 dynamodb_load_user_actions = ["dynamodb:Scan"]
+
+
+
+#add organization
+dynamodb_add_organization_actions = [
+  "dynamodb:GetItem",
+  "dynamodb:PutItem",
+  "dynamodb:UpdateItem",
+  "ec2:DescribeInstances",
+  "ec2:CreateNetworkInterface",
+  "ec2:AttachNetworkInterface",
+  "ec2:DescribeNetworkInterfaces",
+  "autoscaling:CompleteLifecycleAction"
+]

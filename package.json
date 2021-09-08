@@ -12,7 +12,8 @@
     "bootstrap": "npm run hooks:init && npm run eslint:init",
     "test": "jest --passWithNoTests --silent --noStackTrace --runInBand",
     "test:unit": "npm test -- -c jest-unit-config.js",
-    "test:unit-watch": "npm test -- --watch -c jest-unit-config.js"
+    "test:unit-watch": "npm test -- --watch -c jest-unit-config.js",
+    "clear:cache": "jest --clearCache"
   },
   "engines": {
     "node": ">=14.15.0"
