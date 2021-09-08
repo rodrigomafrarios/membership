@@ -1,5 +1,5 @@
-import { UserModel } from '../../../models/user'
+import { UserWithoutCredentials } from '../../../models/user'
 
 export interface ListUsers {
-  list: () => Promise<UserModel[]>
+  list: () => Promise<UserWithoutCredentials[]>
 }

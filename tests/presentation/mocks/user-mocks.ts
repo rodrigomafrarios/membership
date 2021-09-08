@@ -1,6 +1,7 @@
 import { UserModel } from '@/domain/models/user'
 import { ListUsers } from '@/domain/usecases/user/list-users/list-users'
 import { AddUser } from '@/domain/usecases/user/add-user/add-user'
+import { LoadUser } from '@/domain/usecases/user/load-user/load-user'
 
 export const mockUser = (): UserModel => {
   return {
@@ -28,4 +29,13 @@ export const mockListUsersStub = (): ListUsers => {
     }
   }
   return new ListUsersStub()
+}
+
+export const mockLoadUserStub = (): LoadUser => {
+  class LoadUserStub implements LoadUser {
+    async loadById (id: UserModel['id']): Promise<UserModel> {
+      return Promise.resolve(mockUser())
+    }
+  }
+  return new LoadUserStub()
 }

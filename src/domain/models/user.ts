@@ -6,3 +6,7 @@ export interface UserModel {
 	role: string
 	accessToken?: string
 }
+
+type UserWithoutPassword = Omit<UserModel, 'password'>
+
+export type UserWithoutCredentials = Omit<UserWithoutPassword, 'accessToken'>

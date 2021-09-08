@@ -8,6 +8,23 @@ type SutTypes = {
   client: AWS.DynamoDB.DocumentClient
 }
 
+const mockAddUser = async (client: AWS.DynamoDB.DocumentClient, id: string) => {
+  await client.transactWrite({
+    TransactItems: [{
+      Put: {
+        TableName: 'test-users',
+        Item: {
+          id,
+          name: 'any_name',
+          email: 'any_email@gmail.com',
+          password: '123',
+          role: 'sysadmin'
+        }
+      }
+    }]
+  }).promise()
+}
+
 const makeSut = (): SutTypes => {
   const client = DynamoDBClientFactory({
     region: 'local',
@@ -26,30 +43,18 @@ describe('UserDynamoDbRepository', () => {
     process.env.DYNAMODB_TABLE_USERS = 'test-users'
   })
   describe('loadByEmail()', () => {
-    test('Should load an User', async () => {
+    test('Should load an user', async () => {
       const { sut, client } = makeSut()
       const id = uuidv4()
-      await client.transactWrite({
-        TransactItems: [{
-          Put: {
-            TableName: 'test-users',
-            Item: {
-              id,
-              name: 'any_name',
-              email: 'any_email@gmail.com',
-              password: '123'
-            }
-          }
-        }]
-      }).promise()
-
+      await mockAddUser(client, id)
       const results = await sut.loadByEmail('any_email@gmail.com')
 
       expect(results).toEqual({
         id,
         name: 'any_name',
         email: 'any_email@gmail.com',
-        password: '123'
+        password: '123',
+        role: 'sysadmin'
       })
     })
   })
@@ -102,6 +107,22 @@ describe('UserDynamoDbRepository', () => {
       const results = await sut.list()
       expect(results).toBeTruthy()
       expect(results.length).toBe(2)
+    })
+  })
+
+  describe('loadById()', () => {
+    it('should load user by id', async () => {
+      const { sut, client } = makeSut()
+      const id = uuidv4()
+      await mockAddUser(client, id)
+      const results = await sut.loadById(id)
+
+      expect(results).toEqual({
+        id,
+        name: 'any_name',
+        email: 'any_email@gmail.com',
+        role: 'sysadmin'
+      })
     })
   })
 })

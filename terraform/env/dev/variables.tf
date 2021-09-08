@@ -10,6 +10,10 @@ variable "dynamodb_list_users_actions" {
   
 }
 
+variable "dynamodb_load_user_actions" {
+  
+}
+
 variable "sample_id" {
 
 }

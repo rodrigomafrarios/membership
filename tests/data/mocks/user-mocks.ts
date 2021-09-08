@@ -4,6 +4,7 @@ import { AddUserRepository } from '@/data/interfaces/db/user/add-user-repository
 import { AddUserParams } from '@/domain/usecases/user/add-user/add-user'
 import { v4 as uuidv4 } from 'uuid'
 import { ListUsersRepository } from '@/data/interfaces/db/user/list-users-repository'
+import { LoadUserByIdRepository } from '@/data/interfaces/db/user/load-user-by-id-repository'
 
 const id = uuidv4()
 
@@ -29,6 +30,15 @@ export const mockLoadUserByEmailRepository = (): LoadUserByEmailRepository => {
     }
   }
   return new LoadUserByEmailRepositoryStub()
+}
+
+export const mockLoadUserByIdRepository = (): LoadUserByIdRepository => {
+  class LoadUserByIdRepositoryStub implements LoadUserByIdRepository {
+    async loadById (): Promise<UserModel> {
+      return Promise.resolve(mockUser())
+    }
+  }
+  return new LoadUserByIdRepositoryStub()
 }
 
 export const mockListUsersRepository = (): ListUsersRepository => {

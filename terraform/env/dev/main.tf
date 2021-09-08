@@ -23,5 +23,6 @@ module "user" {
   dynamodb_signup_actions      = var.dynamodb_signup_actions
   dynamodb_login_actions       = var.dynamodb_login_actions
   dynamodb_list_users_actions  = var.dynamodb_list_users_actions
+  dynamodb_load_user_actions   = var.dynamodb_load_user_actions
   sample_jwt_secret            = var.sample_jwt_secret
 }

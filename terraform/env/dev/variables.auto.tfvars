@@ -15,3 +15,6 @@ dynamodb_login_actions = ["dynamodb:UpdateItem", "dynamodb:GetItem"]
 
 #list users
 dynamodb_list_users_actions = ["dynamodb:Scan"]
+
+#load user
+dynamodb_load_user_actions = ["dynamodb:Scan"]
