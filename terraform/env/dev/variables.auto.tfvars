@@ -12,3 +12,6 @@ dynamodb_signup_actions = [
 
 #login
 dynamodb_login_actions = ["dynamodb:UpdateItem", "dynamodb:GetItem"]
+
+#list users
+dynamodb_list_users_actions = ["dynamodb:Scan"]

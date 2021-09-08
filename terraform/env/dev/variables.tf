@@ -6,6 +6,10 @@ variable "dynamodb_signup_actions" {
 
 }
 
+variable "dynamodb_list_users_actions" {
+  
+}
+
 variable "sample_id" {
 
 }

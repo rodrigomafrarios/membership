@@ -95,4 +95,13 @@ describe('UserDynamoDbRepository', () => {
       expect(results.email).toStrictEqual('any_email@mail.com')
     })
   })
+
+  describe('list()', () => {
+    it('should list users', async () => {
+      const { sut } = makeSut()
+      const results = await sut.list()
+      expect(results).toBeTruthy()
+      expect(results.length).toBe(2)
+    })
+  })
 })

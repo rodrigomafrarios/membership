@@ -3,7 +3,7 @@ import { Validation } from '@/presentation/interfaces/validation'
 import { makeValidation } from '@/tests/presentation/mocks/validation-mocks'
 import { badRequest, forbidden, ok, serverError } from '@/presentation/helpers/http/http-helper'
 import { AddUser } from '@/domain/usecases/user/add-user/add-user'
-import { mockAddUser } from '@/tests/presentation/mocks/signup-mocks'
+import { mockAddUserStub } from '@/tests/presentation/mocks/user-mocks'
 import { EmailInUseError } from '@/presentation/errors/email-in-use-error'
 import { makeLogin } from '@/tests/presentation/mocks/login-mocks'
 import { Login } from '@/domain/usecases/login/login'
@@ -25,7 +25,7 @@ const makeRequest = () => ({
 
 const makeSut = (): SutTypes => {
   const validationStub = makeValidation()
-  const addUserStub = mockAddUser()
+  const addUserStub = mockAddUserStub()
   const loginStub = makeLogin()
   const sut = new SignupController(validationStub, addUserStub, loginStub)
   return {
