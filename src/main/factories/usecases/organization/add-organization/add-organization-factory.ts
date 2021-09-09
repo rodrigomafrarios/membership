@@ -4,6 +4,6 @@ import { DynamoDBClientFactory } from '../../../../../infra/aws/factories/aws-co
 
 export const makeDbAddOrganization = (): DbAddOrganization => {
   const dynamoClient = DynamoDBClientFactory({ apiVersion: '2012-08-10' })
-  const repository = new OrganizationDynamodbRepository(dynamoClient)
-  return new DbAddOrganization(repository)
+  const organizationRepository = new OrganizationDynamodbRepository(dynamoClient)
+  return new DbAddOrganization(organizationRepository, organizationRepository)
 }

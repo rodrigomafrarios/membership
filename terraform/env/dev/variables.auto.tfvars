@@ -21,9 +21,8 @@ dynamodb_load_user_actions = ["dynamodb:Scan"]
 
 #add organization
 dynamodb_add_organization_actions = [
-  "dynamodb:GetItem",
+  "dynamodb:Scan",
   "dynamodb:PutItem",
-  "dynamodb:UpdateItem",
   "ec2:DescribeInstances",
   "ec2:CreateNetworkInterface",
   "ec2:AttachNetworkInterface",
