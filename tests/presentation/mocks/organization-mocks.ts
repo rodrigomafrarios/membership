@@ -2,15 +2,23 @@ import { OrganizationModel } from '@/domain/models/organization'
 import { AddOrganization, AddOrganizationParams } from '@/domain/usecases/organization/add-organization/add-organization'
 import { ListOrganizations } from '@/domain/usecases/organization/list-organizations/list-organizations'
 import { LoadOrganization } from '@/domain/usecases/organization/load-organization/load-organization'
+import { HttpRequest } from '@/presentation/interfaces/http'
+
+export const mockAddOrganizationRequest = (): HttpRequest => ({
+  body: {
+    organizationId: '123',
+    name: 'any-name'
+  }
+})
 
 export const mockAddOrganizationParams = (): AddOrganizationParams => ({
-  organizationId: 'any-org-id',
+  organizationId: '123',
   name: 'any-name'
 })
 
 export const mockOrganization = (): OrganizationModel => ({
   id: 'any-id',
-  organizationId: 'any-org-id',
+  organizationId: '123',
   name: 'any-org-name'
 })
 

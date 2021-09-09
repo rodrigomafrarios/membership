@@ -45,6 +45,29 @@
           "WriteCapacityUnits": 1
         }
       }
+    },
+    {
+      "Type": "AWS::DynamoDB::Table",
+      "Properties": {
+        "TableName": "test-memberships",
+        "BillingMode": "PAY_PER_REQUEST",
+        "KeySchema": [
+          {
+            "AttributeName": "organizationId",
+            "KeyType": "HASH"
+          }
+        ],
+        "AttributeDefinitions": [
+          {
+            "AttributeName": "organizationId",
+            "AttributeType": "S"
+          }
+        ],
+        "ProvisionedThroughput": {
+          "ReadCapacityUnits": 1,
+          "WriteCapacityUnits": 1
+        }
+      }
     }
   ]
 }

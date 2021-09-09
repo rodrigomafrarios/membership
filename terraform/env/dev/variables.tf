@@ -7,23 +7,27 @@ variable "dynamodb_signup_actions" {
 }
 
 variable "dynamodb_list_users_actions" {
-  
+
 }
 
 variable "dynamodb_load_user_actions" {
-  
+
 }
 
 variable "dynamodb_add_organization_actions" {
-  
+
 }
 
 variable "dynamodb_list_organizations_actions" {
-  
+
 }
 
 variable "dynamodb_load_organization_actions" {
-  
+
+}
+
+variable "dynamodb_add_membership_actions" {
+
 }
 
 variable "sample_id" {
@@ -47,9 +51,9 @@ variable "sample_jwt_secret" {
 }
 
 variable "sample_organization_id" {
-  
+
 }
 
 variable "sample_organization_name" {
-  
+
 }
