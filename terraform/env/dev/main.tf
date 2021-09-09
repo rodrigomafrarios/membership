@@ -21,7 +21,7 @@ module "system" {
 module "user" {
   source                      = "../../services/user"
   account_id                  = module.global_variables.account_id
-  dynamodb_signup_actions     = var.dynamodb_signup_actions
+  dynamodb_add_user_actions   = var.dynamodb_add_user_actions
   dynamodb_login_actions      = var.dynamodb_login_actions
   dynamodb_list_users_actions = var.dynamodb_list_users_actions
   dynamodb_load_user_actions  = var.dynamodb_load_user_actions

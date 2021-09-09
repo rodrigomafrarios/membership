@@ -1,4 +1,4 @@
-import { SignupController } from '@/presentation/controllers/signup/signup-controller'
+import { AddUserController } from '@/presentation/controllers/user/add-user/add-user-controller'
 import { Validation } from '@/presentation/interfaces/validation'
 import { makeValidation } from '@/tests/presentation/mocks/validation-mocks'
 import { badRequest, forbidden, ok, serverError } from '@/presentation/helpers/http/http-helper'
@@ -9,7 +9,7 @@ import { makeLogin } from '@/tests/presentation/mocks/login-mocks'
 import { Login } from '@/domain/usecases/login/login'
 
 type SutTypes = {
-  sut: SignupController
+  sut: AddUserController
   addUserStub: AddUser
   loginStub: Login
   validationStub: Validation
@@ -27,7 +27,7 @@ const makeSut = (): SutTypes => {
   const validationStub = makeValidation()
   const addUserStub = mockAddUserStub()
   const loginStub = makeLogin()
-  const sut = new SignupController(validationStub, addUserStub, loginStub)
+  const sut = new AddUserController(validationStub, addUserStub, loginStub)
   return {
     sut,
     validationStub,
@@ -36,7 +36,7 @@ const makeSut = (): SutTypes => {
   }
 }
 
-describe('SignupController', () => {
+describe('AddUserController', () => {
   test('Should call validation with correct values', async () => {
     const { sut, validationStub } = makeSut()
     const { body } = makeRequest()

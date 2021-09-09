@@ -2,7 +2,7 @@ variable "dynamodb_login_actions" {
 
 }
 
-variable "dynamodb_signup_actions" {
+variable "dynamodb_add_user_actions" {
 
 }
 

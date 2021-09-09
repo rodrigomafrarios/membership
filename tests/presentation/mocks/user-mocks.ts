@@ -1,4 +1,4 @@
-import { UserModel } from '@/domain/models/user'
+import { UserModel, UserRole } from '@/domain/models/user'
 import { ListUsers } from '@/domain/usecases/user/list-users/list-users'
 import { AddUser } from '@/domain/usecases/user/add-user/add-user'
 import { LoadUser } from '@/domain/usecases/user/load-user/load-user'
@@ -9,7 +9,7 @@ export const mockUser = (): UserModel => {
     email: 'any_email@mail.com',
     password: 'any_password',
     name: 'any_name',
-    role: 'sysadmin'
+    role: UserRole.sysadmin
   }
 }
 

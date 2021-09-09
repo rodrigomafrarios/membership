@@ -4,7 +4,7 @@ import schema from './schema'
 import { handlerPath } from '../../libs/handlerResolver'
 
 export default {
-  role: '${ssm:${self:custom.stage}-signup-iam-role}',
+  role: '${ssm:${self:custom.stage}-add-user-iam-role}',
   environment: {
     DYNAMODB_TABLE_USERS: '${ssm:${self:custom.stage}-users}',
     JWT_SECRET: '${ssm:${self:custom.stage}-jwt-secret}'
@@ -14,7 +14,7 @@ export default {
     {
       http: {
         method: 'post',
-        path: 'signup',
+        path: 'user',
         request: {
           schema: {
             'application/json': schema

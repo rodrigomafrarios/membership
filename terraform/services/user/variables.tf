@@ -10,7 +10,7 @@ variable "region" {
   default = "us-east-1"
 }
 
-variable "dynamodb_signup_actions" {
+variable "dynamodb_add_user_actions" {
 
 }
 

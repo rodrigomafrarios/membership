@@ -1,5 +1,5 @@
 #signup
-dynamodb_signup_actions = [
+dynamodb_add_user_actions = [
   "dynamodb:GetItem",
   "dynamodb:PutItem",
   "dynamodb:UpdateItem",
