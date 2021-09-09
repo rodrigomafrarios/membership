@@ -53,13 +53,13 @@
         "BillingMode": "PAY_PER_REQUEST",
         "KeySchema": [
           {
-            "AttributeName": "organizationId",
+            "AttributeName": "id",
             "KeyType": "HASH"
           }
         ],
         "AttributeDefinitions": [
           {
-            "AttributeName": "organizationId",
+            "AttributeName": "id",
             "AttributeType": "S"
           }
         ],

@@ -26,8 +26,8 @@ variable "dynamodb_load_organization_actions" {
 
 }
 
-variable "dynamodb_add_membership_actions" {
-
+variable "dynamodb_list_memberships_actions" {
+  
 }
 
 variable "sample_id" {

@@ -37,14 +37,5 @@ dynamodb_list_organizations_actions = ["dynamodb:Scan"]
 # load organization
 dynamodb_load_organization_actions = ["dynamodb:Scan"]
 
-# add membership
-dynamodb_add_membership_actions = [
-  "dynamodb:GetItem",
-  "dynamodb:PutItem",
-  "dynamodb:Scan",
-  "ec2:DescribeInstances",
-  "ec2:CreateNetworkInterface",
-  "ec2:AttachNetworkInterface",
-  "ec2:DescribeNetworkInterfaces",
-  "autoscaling:CompleteLifecycleAction"
-]
+# list memberships
+dynamodb_list_memberships_actions = ["dynamodb:Scan"]

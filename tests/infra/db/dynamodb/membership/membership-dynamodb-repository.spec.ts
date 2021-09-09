@@ -31,4 +31,14 @@ describe('MembershipDynamodbRepository', () => {
       expect(response).toBeTruthy()
     })
   })
+  describe('listByOrganizationId()', () => {
+    it('should list memberships by organization id', async () => {
+      const { sut } = makeSut()
+      const params = mockAddMembershipRepositoryParams()
+      await sut.add(params)
+      const response = await sut.listByOrganizationId(params.organizationId)
+      expect(response.length).toBe(1)
+      expect(response[0].organizationName).toBe(params.organizationName)
+    })
+  })
 })

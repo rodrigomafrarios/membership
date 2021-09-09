@@ -1,8 +1,8 @@
 resource "aws_dynamodb_table" "memberships" {
   name     = "${terraform.workspace}-memberships"
-  hash_key = "organizationId"
+  hash_key = "id"
   attribute {
-    name = "organizationId"
+    name = "id"
     type = "S"
   }
   write_capacity   = var.write_capacity

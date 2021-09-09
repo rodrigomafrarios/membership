@@ -1,7 +1,9 @@
 import { AddMembershipRepository, AddMembershipRepositoryParams } from '@/data/interfaces/db/membership/add-membership/add-membership-repository'
 import { AddMembershipParams } from '@/domain/usecases/membership/add-membership/add-membership'
 import { mockOrganization } from '@/tests/presentation/mocks/organization-mocks'
+import { ListMembershipsRepository } from '@/data/interfaces/db/membership/list-memberships/list-memberships-repository'
 import { mockUser } from './user-mocks'
+import { MembershipModel } from '@/domain/models/membership'
 
 const user = mockUser()
 const organization = mockOrganization()
@@ -20,6 +22,16 @@ export const mockAddMembershipRepositoryParams = (): AddMembershipRepositoryPara
   organizationName: organization.name
 })
 
+export const mockMembership = (): MembershipModel => ({
+  id: 'any-id',
+  userId: user.id,
+  userName: user.name,
+  userEmail: user.email,
+  userRole: user.role,
+  organizationId: organization.organizationId,
+  organizationName: organization.name
+})
+
 export const mockAddMembershipRepository = (): AddMembershipRepository => {
   class AddMembershipRepositoryStub implements AddMembershipRepository {
     async add (addMembershipRepositoryParams: AddMembershipRepositoryParams): Promise<boolean> {
@@ -27,4 +39,13 @@ export const mockAddMembershipRepository = (): AddMembershipRepository => {
     }
   }
   return new AddMembershipRepositoryStub()
+}
+
+export const mockListMembershipsRepository = (): ListMembershipsRepository => {
+  class ListMembershipsRepositoryStub implements ListMembershipsRepository {
+    async listByOrganizationId (organizationId: string): Promise<MembershipModel[]> {
+      return Promise.resolve([mockMembership()])
+    }
+  }
+  return new ListMembershipsRepositoryStub()
 }
