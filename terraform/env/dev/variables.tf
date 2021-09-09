@@ -22,6 +22,10 @@ variable "dynamodb_list_organizations_actions" {
   
 }
 
+variable "dynamodb_load_organization_actions" {
+  
+}
+
 variable "sample_id" {
 
 }

@@ -1,6 +1,6 @@
 import type { AWS } from '@serverless/typescript'
 
-import { signUp, listUsers, loadUser, addOrganization, listOrganizations } from './src/main/functions'
+import { signUp, listUsers, loadUser, addOrganization, listOrganizations, loadOrganization } from './src/main/functions'
 
 const serverlessConfiguration: AWS = {
   service: 'membership',
@@ -34,7 +34,7 @@ const serverlessConfiguration: AWS = {
     },
     lambdaHashingVersion: '20201221'
   },
-  functions: { signUp, listUsers, loadUser, addOrganization, listOrganizations }
+  functions: { signUp, listUsers, loadUser, addOrganization, listOrganizations, loadOrganization }
 }
 
 module.exports = serverlessConfiguration

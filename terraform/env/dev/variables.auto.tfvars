@@ -35,3 +35,6 @@ dynamodb_add_organization_actions = [
 
 # list organizations
 dynamodb_list_organizations_actions = ["dynamodb:Scan"]
+
+# load organization
+dynamodb_load_organization_actions = ["dynamodb:Scan"]

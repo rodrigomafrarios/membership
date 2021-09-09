@@ -45,4 +45,16 @@ describe('OrganizationDynamodbRepository', () => {
       expect(organizations.length).toBe(1)
     })
   })
+  describe('loadByOrganizationId()', () => {
+    it('should load an organization', async () => {
+      const { sut } = makeSut()
+      await sut.add({
+        organizationId: 'any-organization-id',
+        name: 'any-name'
+      })
+      const organization = await sut.loadByOrganizationId('any-organization-id')
+      expect(organization.organizationId).toEqual('any-organization-id')
+      expect(organization.name).toEqual('any-name')
+    })
+  })
 })

@@ -1,3 +1,4 @@
+import { LoadOrganizationRepository } from '@/data/interfaces/db/organization/load-organization-repository'
 import { ListOrganizationsRepository } from '@/data/interfaces/db/organization/list-organizations-repository'
 import { AddOrganizationRepository } from '@/data/interfaces/db/organization/add-organization-repository'
 import { AddOrganizationParams } from '@/domain/usecases/organization/add-organization/add-organization'
@@ -20,4 +21,13 @@ export const mockListOrganizationsRepository = (): ListOrganizationsRepository =
     }
   }
   return new ListOrganizationsRepositoryStub()
+}
+
+export const mockLoadOrganizationRepository = (): LoadOrganizationRepository => {
+  class LoadOrganizationRepositoryStub implements LoadOrganizationRepository {
+    async loadByOrganizationId (): Promise<OrganizationModel> {
+      return Promise.resolve(mockOrganization())
+    }
+  }
+  return new LoadOrganizationRepositoryStub()
 }

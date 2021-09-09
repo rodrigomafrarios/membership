@@ -17,6 +17,7 @@ export class AddOrganizationController implements Controller {
       if (error) {
         return badRequest(error)
       }
+      body.organizationId = body.organizationId.replace(/\D/g, '')
       const saved = await this.addOrganization.add(body)
       if (!saved) {
         return badRequest(new Error())

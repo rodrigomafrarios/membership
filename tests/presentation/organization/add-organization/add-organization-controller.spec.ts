@@ -35,6 +35,9 @@ describe('AddOrganizationController', () => {
       organizationName: mockAddOrganizationParams()
     })
   })
+  it('should call organization id sanitizer', async () => {
+
+  })
   it('should return 400 if validation fails', async () => {
     const { sut, validatorStub } = makeSut()
     jest.spyOn(validatorStub, 'validate').mockReturnValueOnce(new Error())
