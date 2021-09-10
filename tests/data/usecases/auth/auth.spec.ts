@@ -56,6 +56,31 @@ describe('Auth - Usecase', () => {
     expect(policyGeneratorSpy).toHaveBeenCalledWith(mockDenyPolicyParams())
   })
 
+  test('Should call PolicyGenerator denying access on Decrypter fail - is not allowed', async () => {
+    const { sut, decrypterStub, policyGeneratorStub } = makeSut()
+    jest.spyOn(decrypterStub, 'decrypt').mockReturnValueOnce(Promise.resolve({
+      data: JSON.stringify({
+        userRole: UserRole.orgadmin
+      })
+    }))
+    const policyGeneratorSpy = jest.spyOn(policyGeneratorStub, 'generate')
+    await sut.auth(mockAuthorizerParams())
+    expect(policyGeneratorSpy).toHaveBeenCalledWith(mockDenyPolicyParams())
+  })
+
+  test('Should call PolicyGenerator denying access on Decrypter fail - is not allowed', async () => {
+    const { sut, decrypterStub, policyGeneratorStub } = makeSut()
+    jest.spyOn(decrypterStub, 'decrypt').mockReturnValueOnce(Promise.resolve({
+      data: JSON.stringify({
+        userId: 'any_decrypted_user',
+        userRole: UserRole.orgadmin
+      })
+    }))
+    const policyGeneratorSpy = jest.spyOn(policyGeneratorStub, 'generate')
+    await sut.auth(mockAuthorizerParams())
+    expect(policyGeneratorSpy).toHaveBeenCalledWith(mockDenyPolicyParams())
+  })
+
   test('Should call PolicyGenerator granting access on Decrypter success', async () => {
     const { sut, policyGeneratorStub } = makeSut()
     const policyGeneratorSpy = jest.spyOn(policyGeneratorStub, 'generate')

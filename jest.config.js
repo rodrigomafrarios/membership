@@ -12,6 +12,11 @@ module.exports = {
     '<rootDir>/src/**/*.ts',
     '!<rootDir>/src/main/**'
   ],
+  coveragePathIgnorePatterns: [
+    '<rootDir>/src/presentation/errors/*',
+    '<rootDir>/src/presentation/helpers/http/*',
+    '<rootDir>/src/infra/aws/factories/*'
+  ],
   coverageDirectory: 'coverage',
   coverageProvider: 'babel',
   testEnvironment: 'node',

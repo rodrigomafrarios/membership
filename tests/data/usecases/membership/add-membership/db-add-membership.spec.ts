@@ -3,7 +3,7 @@ import { LoadMembershipRepository } from '@/data/interfaces/db/membership/load-m
 import { LoadOrganizationRepository } from '@/data/interfaces/db/organization/load-organization-repository'
 import { LoadUserByIdRepository } from '@/data/interfaces/db/user/load-user-by-id-repository'
 import { DbAddMembership } from '@/data/usecases/membership/add-membership/db-add-membership'
-import { mockAddMembershipParams, mockAddMembershipRepository, mockAddMembershipRepositoryParams, mockLoadMembershipByUserOrganizationRepository } from '@/tests/data/mocks/membership-mocks'
+import { mockAddMembershipParams, mockAddMembershipRepository, mockAddMembershipRepositoryParams, mockLoadMembershipByUserOrganizationRepository, mockMembership } from '@/tests/data/mocks/membership-mocks'
 import { mockLoadOrganizationRepository } from '@/tests/data/mocks/organization-mocks'
 import { mockLoadUserByIdRepository } from '@/tests/data/mocks/user-mocks'
 
@@ -78,6 +78,12 @@ describe('DbAddMembership', () => {
     const loadSpy = jest.spyOn(loadMembershipByUserOrganizationRepositoryStub, 'loadByUserOrganization')
     await sut.add(mockAddMembershipParams())
     expect(loadSpy).toHaveBeenCalledWith(mockAddMembershipParams())
+  })
+  it('should return false if membership exists', async () => {
+    const { sut, loadMembershipByUserOrganizationRepositoryStub } = makeSut()
+    jest.spyOn(loadMembershipByUserOrganizationRepositoryStub, 'loadByUserOrganization').mockResolvedValueOnce(mockMembership())
+    const response = await sut.add(mockAddMembershipParams())
+    expect(response).toBeFalsy()
   })
   it('should throw if LoadMembershipRepository throws', async () => {
     const { sut, loadMembershipByUserOrganizationRepositoryStub } = makeSut()

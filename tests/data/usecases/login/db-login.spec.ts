@@ -99,6 +99,13 @@ describe('Login Usecase', () => {
 		await expect(promise).rejects.toThrow()
 	})
 
+  test('Should return false on hash comparer', async () => {
+    const { sut, hashComparerStub } = makeSut()
+    jest.spyOn(hashComparerStub, 'compare').mockResolvedValueOnce(null)
+		const response = await sut.getToken(mockLoginParams())
+		expect(response).toBeNull()
+  })
+
   test('Should call encrypter with correct value', async () => {
     const { sut, encrypterStub } = makeSut()
     const encrypterSpy = jest.spyOn(encrypterStub, 'encrypt')
