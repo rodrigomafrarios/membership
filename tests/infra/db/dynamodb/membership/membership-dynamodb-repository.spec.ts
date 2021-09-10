@@ -37,8 +37,22 @@ describe('MembershipDynamodbRepository', () => {
       const params = mockAddMembershipRepositoryParams()
       await sut.add(params)
       const response = await sut.listByOrganizationId(params.organizationId)
-      expect(response.length).toBe(1)
+      expect(response.length).toBeGreaterThan(0)
       expect(response[0].organizationName).toBe(params.organizationName)
+    })
+  })
+  describe('loadByUserOrganization()', () => {
+    it('should load membership by user and organization id', async () => {
+      const { sut } = makeSut()
+      const { userId, organizationId } = mockAddMembershipRepositoryParams()
+      await sut.add(mockAddMembershipRepositoryParams())
+      const response = await sut.loadByUserOrganization({
+        organizationId,
+        userId
+      })
+      expect(response).toBeDefined()
+      expect(response.organizationId).toBe(organizationId)
+      expect(response.organizationName).toBe('any-org-name')
     })
   })
 })

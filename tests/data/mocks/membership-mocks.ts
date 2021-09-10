@@ -1,3 +1,4 @@
+import { LoadMembershipParams, LoadMembershipRepository } from '@/data/interfaces/db/membership/load-membership/load-membership-repository'
 import { AddMembershipRepository, AddMembershipRepositoryParams } from '@/data/interfaces/db/membership/add-membership/add-membership-repository'
 import { AddMembershipParams } from '@/domain/usecases/membership/add-membership/add-membership'
 import { mockOrganization } from '@/tests/presentation/mocks/organization-mocks'
@@ -48,4 +49,13 @@ export const mockListMembershipsRepository = (): ListMembershipsRepository => {
     }
   }
   return new ListMembershipsRepositoryStub()
+}
+
+export const mockLoadMembershipByUserOrganizationRepository = (): LoadMembershipRepository => {
+  class LoadMembershipRepositoryStub implements LoadMembershipRepository {
+    async loadByUserOrganization (loadParams: LoadMembershipParams): Promise<MembershipModel> {
+      return Promise.resolve(null)
+    }
+  }
+  return new LoadMembershipRepositoryStub()
 }

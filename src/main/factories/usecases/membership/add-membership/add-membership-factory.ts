@@ -9,5 +9,5 @@ export const makeDbAddMembership = (): DbAddMembership => {
   const userRepository = new UserDynamoDbRepository(dynamoClient)
   const organizationRepository = new OrganizationDynamodbRepository(dynamoClient)
   const membershipRepository = new MembershipDynamodbRepository(dynamoClient)
-  return new DbAddMembership(userRepository, organizationRepository, membershipRepository)
+  return new DbAddMembership(userRepository, organizationRepository, membershipRepository, membershipRepository)
 }

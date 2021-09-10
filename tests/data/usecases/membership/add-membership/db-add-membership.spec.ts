@@ -1,8 +1,9 @@
 import { AddMembershipRepository } from '@/data/interfaces/db/membership/add-membership/add-membership-repository'
+import { LoadMembershipRepository } from '@/data/interfaces/db/membership/load-membership/load-membership-repository'
 import { LoadOrganizationRepository } from '@/data/interfaces/db/organization/load-organization-repository'
 import { LoadUserByIdRepository } from '@/data/interfaces/db/user/load-user-by-id-repository'
 import { DbAddMembership } from '@/data/usecases/membership/add-membership/db-add-membership'
-import { mockAddMembershipParams, mockAddMembershipRepository, mockAddMembershipRepositoryParams } from '@/tests/data/mocks/membership-mocks'
+import { mockAddMembershipParams, mockAddMembershipRepository, mockAddMembershipRepositoryParams, mockLoadMembershipByUserOrganizationRepository } from '@/tests/data/mocks/membership-mocks'
 import { mockLoadOrganizationRepository } from '@/tests/data/mocks/organization-mocks'
 import { mockLoadUserByIdRepository } from '@/tests/data/mocks/user-mocks'
 
@@ -10,18 +11,21 @@ type SutTypes = {
   sut: DbAddMembership
   loadUserByIdRepositoryStub: LoadUserByIdRepository
   loadOrganizationByIdRepositoryStub: LoadOrganizationRepository
+  loadMembershipByUserOrganizationRepositoryStub: LoadMembershipRepository
   addMembershipRepositoryStub: AddMembershipRepository
 }
 
 const makeSut = (): SutTypes => {
   const loadUserByIdRepositoryStub = mockLoadUserByIdRepository()
   const loadOrganizationByIdRepositoryStub = mockLoadOrganizationRepository()
+  const loadMembershipByUserOrganizationRepositoryStub = mockLoadMembershipByUserOrganizationRepository()
   const addMembershipRepositoryStub = mockAddMembershipRepository()
-  const sut = new DbAddMembership(loadUserByIdRepositoryStub, loadOrganizationByIdRepositoryStub, addMembershipRepositoryStub)
+  const sut = new DbAddMembership(loadUserByIdRepositoryStub, loadOrganizationByIdRepositoryStub, loadMembershipByUserOrganizationRepositoryStub, addMembershipRepositoryStub)
   return {
     sut,
     loadUserByIdRepositoryStub,
     loadOrganizationByIdRepositoryStub,
+    loadMembershipByUserOrganizationRepositoryStub,
     addMembershipRepositoryStub
   }
 }
@@ -68,6 +72,20 @@ describe('DbAddMembership', () => {
     jest.spyOn(loadOrganizationByIdRepositoryStub, 'loadByOrganizationId').mockResolvedValueOnce(undefined)
     const response = await sut.add(mockAddMembershipParams())
     expect(response).toBeFalsy()
+  })
+  it('should call LoadMembershipRepository with correct value', async () => {
+    const { sut, loadMembershipByUserOrganizationRepositoryStub } = makeSut()
+    const loadSpy = jest.spyOn(loadMembershipByUserOrganizationRepositoryStub, 'loadByUserOrganization')
+    await sut.add(mockAddMembershipParams())
+    expect(loadSpy).toHaveBeenCalledWith(mockAddMembershipParams())
+  })
+  it('should throw if LoadMembershipRepository throws', async () => {
+    const { sut, loadMembershipByUserOrganizationRepositoryStub } = makeSut()
+    jest.spyOn(loadMembershipByUserOrganizationRepositoryStub, 'loadByUserOrganization').mockImplementationOnce(() => {
+      throw new Error()
+    })
+    const promise = sut.add(mockAddMembershipParams())
+    await expect(promise).rejects.toThrow()
   })
   it('should call AddMembershipRepository with correct values', async () => {
     const { sut, addMembershipRepositoryStub } = makeSut()

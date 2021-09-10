@@ -8,6 +8,7 @@ resource "aws_iam_policy" "add_membership_policy" {
       "Effect": "Allow",
       "Action": [
         "dynamodb:PutItem",
+        "dynamodb:Scan",
         "ec2:DescribeInstances",
         "ec2:CreateNetworkInterface",
         "ec2:AttachNetworkInterface",

@@ -1,5 +1,5 @@
 import { LoadUserByEmailRepository } from '@/data/interfaces/db/user/load-user-by-email-repository'
-import { UserModel } from '@/domain/models/user'
+import { UserModel, UserRole } from '@/domain/models/user'
 import { AddUserRepository } from '@/data/interfaces/db/user/add-user-repository'
 import { AddUserParams } from '@/domain/usecases/user/add-user/add-user'
 import { v4 as uuidv4 } from 'uuid'
@@ -12,7 +12,7 @@ export const mockAddUserParams = (): AddUserParams => ({
   email: 'any_email@mail.com',
   password: 'any_password',
   name: 'any_name',
-  role: 'sysadmin'
+  role: UserRole.sysadmin
 })
 
 export const mockUser = (): UserModel => ({
@@ -20,7 +20,7 @@ export const mockUser = (): UserModel => ({
   name: 'any_name',
   email: 'any_email',
   password: 'hashed_password',
-  role: 'sysadmin'
+  role: UserRole.sysadmin
 })
 
 export const mockLoadUserByEmailRepository = (): LoadUserByEmailRepository => {
