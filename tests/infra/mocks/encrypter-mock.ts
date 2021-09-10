@@ -1,4 +1,4 @@
-import { Decrypter, DecrypterResult } from '@/data/interfaces/criptography/decrypter'
+import { Decrypter } from '@/data/interfaces/criptography/decrypter'
 import { UserRole } from '@/domain/models/user'
 
 export const mockToEncrypt = () => {
@@ -16,7 +16,7 @@ export const mockDescrypterResults = () => {
 
 export const mockDecrypter = (): Decrypter => {
 	class DecrypterStub implements Decrypter {
-    async decrypt (value: string): Promise<DecrypterResult> {
+    async decrypt (value: string): Promise<any> {
         return Promise.resolve(mockDescrypterResults())
     }
 	}
