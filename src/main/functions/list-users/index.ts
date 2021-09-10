@@ -12,7 +12,10 @@ export default {
     {
       http: {
         method: 'get',
-        path: 'users/list'
+        path: 'users/list',
+        authorizer: {
+          arn: '${ssm:${self:custom.stage}-orguser-authorizer}'
+        }
       }
     }
   ]

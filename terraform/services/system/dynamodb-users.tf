@@ -22,7 +22,7 @@ resource "aws_dynamodb_table_item" "sample_user" {
     "accessToken": {"S": "${var.sample_jwt_secret}"},
     "password": {"S": "${var.sample_password}"},
     "name": {"S": "${var.sample_name}"},
-    "role": {"S": "sysadmin"}
+    "role": {"S": "SYSADMIN"}
   }
   ITEM
 }

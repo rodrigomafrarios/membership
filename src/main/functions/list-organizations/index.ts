@@ -12,7 +12,10 @@ export default {
     {
       http: {
         method: 'get',
-        path: 'organizations/list'
+        path: 'organizations/list',
+        authorizer: {
+          arn: '${ssm:${self:custom.stage}-user-authorizer}'
+        }
       }
     }
   ]

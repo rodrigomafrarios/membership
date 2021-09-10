@@ -6,3 +6,8 @@ export { default as listOrganizations } from './list-organizations'
 export { default as loadOrganization } from './load-organization'
 export { default as addMembership } from './add-membership'
 export { default as listMemberships } from './list-memberships'
+
+export { default as sysAdminAuth } from './auth/authorizers/sysadmin'
+export { default as orgAdminAuth } from './auth/authorizers/orgadmin'
+export { default as orgUserAuth } from './auth/authorizers/orguser'
+export { default as userAuth } from './auth/authorizers/user'

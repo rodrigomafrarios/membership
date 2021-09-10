@@ -17,7 +17,7 @@ export class DbLogin implements Login {
     if (user) {
       const isValid = await this.hashComparer.compare(params.password, user.password)
       if (isValid) {
-        const accessToken = await this.encrypter.encrypt(user.id)
+        const accessToken = await this.encrypter.encrypt(JSON.stringify({ userId: user.id, userRole: user.role }))
         await this.updateAccessTokenRepository.updateAccessToken(user.email, accessToken)
         return accessToken
       }

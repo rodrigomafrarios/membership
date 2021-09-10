@@ -21,7 +21,7 @@ resource "aws_dynamodb_table_item" "sample_membership" {
     "userId": {"S": "${var.sample_id}"},
     "userName": {"S": "${var.sample_name}"},
     "userEmail": {"S": "${var.sample_email}"},
-    "userRole": {"S": "sysadmin"},
+    "userRole": {"S": "SYSADMIN"},
     "organizationId": {"S": "${var.sample_organization_id}"},
     "organizationName": {"S": "${var.sample_organization_name}"}
   }

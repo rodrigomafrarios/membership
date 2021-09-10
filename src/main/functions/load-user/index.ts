@@ -13,6 +13,9 @@ export default {
       http: {
         method: 'get',
         path: 'user/{userId}',
+        authorizer: {
+          arn: '${ssm:${self:custom.stage}-orguser-authorizer}'
+        },
         request: {
           parameters: {
             paths: {

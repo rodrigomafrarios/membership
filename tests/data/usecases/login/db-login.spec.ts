@@ -103,8 +103,8 @@ describe('Login Usecase', () => {
     const { sut, encrypterStub } = makeSut()
     const encrypterSpy = jest.spyOn(encrypterStub, 'encrypt')
     await sut.getToken(mockLoginParams())
-    const { id } = mockUser()
-    expect(encrypterSpy).toHaveBeenCalledWith(id)
+    const { id, role } = mockUser()
+    expect(encrypterSpy).toHaveBeenCalledWith(JSON.stringify({ userId: id, userRole: role }))
   })
 
   test('Should throw if Encrypter throws', async () => {
