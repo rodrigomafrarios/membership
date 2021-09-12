@@ -1,0 +1,205 @@
+{
+  "swagger" : "2.0",
+  "info" : {
+    "version" : "2021-09-10T21:01:06Z",
+    "title" : "membership-dev"
+  },
+  "host" : "eqcuvhxxjh.execute-api.us-east-1.amazonaws.com",
+  "basePath" : "/dev",
+  "schemes" : [ "https" ],
+  "paths" : {
+    "/authorizer/orgadmin" : {
+      "get" : {
+        "responses" : { }
+      }
+    },
+    "/authorizer/orguser" : {
+      "get" : {
+        "responses" : { }
+      }
+    },
+    "/authorizer/sysadmin" : {
+      "get" : {
+        "responses" : { }
+      }
+    },
+    "/authorizer/user" : {
+      "get" : {
+        "responses" : { }
+      }
+    },
+    "/membership" : {
+      "post" : {
+        "consumes" : [ "application/json" ],
+        "parameters" : [ {
+          "in" : "body",
+          "name" : "addMembership",
+          "required" : true,
+          "schema" : {
+            "$ref" : "#/definitions/addMembership"
+          }
+        } ],
+        "responses" : { },
+        "security" : [ {
+          "orgAdminAuth" : [ ]
+        } ]
+      }
+    },
+    "/memberships/list/{organizationId}" : {
+      "get" : {
+        "parameters" : [ {
+          "name" : "organizationId",
+          "in" : "path",
+          "required" : true,
+          "type" : "string"
+        } ],
+        "responses" : { }
+      }
+    },
+    "/organization" : {
+      "post" : {
+        "consumes" : [ "application/json" ],
+        "parameters" : [ {
+          "in" : "body",
+          "name" : "addOrganization",
+          "required" : true,
+          "schema" : {
+            "$ref" : "#/definitions/addOrganization"
+          }
+        } ],
+        "responses" : { },
+        "security" : [ {
+          "orgAdminAuth" : [ ]
+        } ]
+      }
+    },
+    "/organization/{organizationId}" : {
+      "get" : {
+        "parameters" : [ {
+          "name" : "organizationId",
+          "in" : "path",
+          "required" : true,
+          "type" : "string"
+        } ],
+        "responses" : { },
+        "security" : [ {
+          "userAuth" : [ ]
+        } ]
+      }
+    },
+    "/organizations/list" : {
+      "get" : {
+        "responses" : { },
+        "security" : [ {
+          "userAuth" : [ ]
+        } ]
+      }
+    },
+    "/user" : {
+      "post" : {
+        "consumes" : [ "application/json" ],
+        "parameters" : [ {
+          "in" : "body",
+          "name" : "addUser",
+          "required" : true,
+          "schema" : {
+            "$ref" : "#/definitions/addUser"
+          }
+        } ],
+        "responses" : { },
+        "security" : [ {
+          "sysAdminAuth" : [ ]
+        } ]
+      }
+    },
+    "/user/{userId}" : {
+      "get" : {
+        "parameters" : [ {
+          "name" : "userId",
+          "in" : "path",
+          "required" : true,
+          "type" : "string"
+        } ],
+        "responses" : { },
+        "security" : [ {
+          "orgUserAuth" : [ ]
+        } ]
+      }
+    },
+    "/users/list" : {
+      "get" : {
+        "responses" : { },
+        "security" : [ {
+          "orgUserAuth" : [ ]
+        } ]
+      }
+    }
+  },
+  "securityDefinitions" : {
+    "sysAdminAuth" : {
+      "type" : "apiKey",
+      "name" : "Authorization",
+      "in" : "header",
+      "x-amazon-apigateway-authtype" : "custom"
+    },
+    "orgAdminAuth" : {
+      "type" : "apiKey",
+      "name" : "Authorization",
+      "in" : "header",
+      "x-amazon-apigateway-authtype" : "custom"
+    },
+    "orgUserAuth" : {
+      "type" : "apiKey",
+      "name" : "Authorization",
+      "in" : "header",
+      "x-amazon-apigateway-authtype" : "custom"
+    },
+    "userAuth" : {
+      "type" : "apiKey",
+      "name" : "Authorization",
+      "in" : "header",
+      "x-amazon-apigateway-authtype" : "custom"
+    }
+  },
+  "definitions" : {
+    "addMembership" : {
+      "type" : "object",
+      "required" : [ "organizationId" ],
+      "properties" : {
+        "organizationId" : {
+          "type" : "string"
+        },
+        "userId" : {
+          "type" : "string"
+        }
+      }
+    },
+    "addOrganization" : {
+      "type" : "object",
+      "required" : [ "name", "organizationId" ],
+      "properties" : {
+        "organizationId" : {
+          "type" : "string"
+        },
+        "name" : {
+          "type" : "string"
+        }
+      }
+    },
+    "addUser" : {
+      "type" : "object",
+      "required" : [ "email", "name", "password" ],
+      "properties" : {
+        "password" : {
+          "type" : "string"
+        },
+        "name" : {
+          "type" : "string"
+        },
+        "email" : {
+          "type" : "string"
+        }
+      }
+    }
+  }
+}

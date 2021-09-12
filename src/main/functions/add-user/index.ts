@@ -16,7 +16,7 @@ export default {
         method: 'post',
         path: 'user',
         authorizer: {
-          arn: '${ssm:${self:custom.stage}-orgadmin-authorizer}'
+          arn: '${ssm:${self:custom.stage}-sysadmin-authorizer}'
         },
         request: {
           schema: {

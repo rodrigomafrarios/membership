@@ -13,7 +13,7 @@ export default {
     {
       http: {
         method: 'post',
-        path: 'organization/create',
+        path: 'organization',
         authorizer: {
           arn: '${ssm:${self:custom.stage}-orgadmin-authorizer}'
         },

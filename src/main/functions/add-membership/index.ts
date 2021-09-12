@@ -15,9 +15,9 @@ export default {
     {
       http: {
         method: 'post',
-        path: 'membership/create',
+        path: 'membership',
         authorizer: {
-          arn: '${ssm:${self:custom.stage}-sysadmin-authorizer}'
+          arn: '${ssm:${self:custom.stage}-orgadmin-authorizer}'
         },
         request: {
           schema: {
