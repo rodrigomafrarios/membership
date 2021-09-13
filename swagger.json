@@ -1,10 +1,10 @@
 {
   "swagger" : "2.0",
   "info" : {
-    "version" : "2021-09-10T21:01:06Z",
+    "version" : "2021-09-13T11:11:53Z",
     "title" : "membership-dev"
   },
-  "host" : "eqcuvhxxjh.execute-api.us-east-1.amazonaws.com",
+  "host" : "uhsu0doeai.execute-api.us-east-1.amazonaws.com",
   "basePath" : "/dev",
   "schemes" : [ "https" ],
   "paths" : {
@@ -25,6 +25,20 @@
     },
     "/authorizer/user" : {
       "get" : {
+        "responses" : { }
+      }
+    },
+    "/login" : {
+      "post" : {
+        "consumes" : [ "application/json" ],
+        "parameters" : [ {
+          "in" : "body",
+          "name" : "login",
+          "required" : true,
+          "schema" : {
+            "$ref" : "#/definitions/login"
+          }
+        } ],
         "responses" : { }
       }
     },
@@ -142,13 +156,13 @@
       "in" : "header",
       "x-amazon-apigateway-authtype" : "custom"
     },
-    "orgAdminAuth" : {
+    "orgUserAuth" : {
       "type" : "apiKey",
       "name" : "Authorization",
       "in" : "header",
       "x-amazon-apigateway-authtype" : "custom"
     },
-    "orgUserAuth" : {
+    "orgAdminAuth" : {
       "type" : "apiKey",
       "name" : "Authorization",
       "in" : "header",
@@ -162,6 +176,18 @@
     }
   },
   "definitions" : {
+    "addOrganization" : {
+      "type" : "object",
+      "required" : [ "name", "organizationId" ],
+      "properties" : {
+        "organizationId" : {
+          "type" : "string"
+        },
+        "name" : {
+          "type" : "string"
+        }
+      }
+    },
     "addMembership" : {
       "type" : "object",
       "required" : [ "organizationId" ],
@@ -174,14 +200,14 @@
         }
       }
     },
-    "addOrganization" : {
+    "login" : {
       "type" : "object",
-      "required" : [ "name", "organizationId" ],
+      "required" : [ "email", "password" ],
       "properties" : {
-        "organizationId" : {
+        "password" : {
           "type" : "string"
         },
-        "name" : {
+        "email" : {
           "type" : "string"
         }
       }
