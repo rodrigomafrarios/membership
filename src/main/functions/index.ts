@@ -1,3 +1,4 @@
+export { default as login } from './login'
 export { default as addUser } from './add-user'
 export { default as listUsers } from './list-users'
 export { default as loadUser } from './load-user'

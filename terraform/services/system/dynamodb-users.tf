@@ -19,7 +19,6 @@ resource "aws_dynamodb_table_item" "sample_user" {
   {
     "id": {"S": "${var.sample_id}"},
     "email": {"S": "${var.sample_email}"},
-    "accessToken": {"S": "${var.sample_jwt_secret}"},
     "password": {"S": "${var.sample_password}"},
     "name": {"S": "${var.sample_name}"},
     "role": {"S": "SYSADMIN"}

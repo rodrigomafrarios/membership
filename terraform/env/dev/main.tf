@@ -41,3 +41,9 @@ module "membership" {
   account_id                         = module.global_variables.account_id
   dynamodb_list_memberships_actions  = var.dynamodb_list_memberships_actions
 }
+
+module "login" {
+  source = "../../services/login"
+  account_id               = module.global_variables.account_id
+  dynamodb_login_actions   = var.dynamodb_login_actions
+}

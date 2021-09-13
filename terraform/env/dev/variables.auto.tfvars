@@ -11,7 +11,16 @@ dynamodb_add_user_actions = [
 ]
 
 #login
-dynamodb_login_actions = ["dynamodb:UpdateItem", "dynamodb:GetItem"]
+dynamodb_login_actions = [
+  "dynamodb:PutItem",
+  "dynamodb:UpdateItem",
+  "dynamodb:GetItem",
+  "ec2:DescribeInstances",
+  "ec2:CreateNetworkInterface",
+  "ec2:AttachNetworkInterface",
+  "ec2:DescribeNetworkInterfaces",
+  "autoscaling:CompleteLifecycleAction"
+]
 
 #list users
 dynamodb_list_users_actions = ["dynamodb:Scan"]

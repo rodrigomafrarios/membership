@@ -1,5 +1,5 @@
 variable "project" {
-  default = "user"
+  default = "membership"
 }
 
 variable "account_id" {
