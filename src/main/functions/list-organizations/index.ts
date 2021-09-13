@@ -14,7 +14,8 @@ export default {
         method: 'get',
         path: 'organizations/list',
         authorizer: {
-          arn: '${ssm:${self:custom.stage}-user-authorizer}'
+          arn: '${ssm:${self:custom.stage}-user-authorizer}',
+          resultTtlInSeconds: 0
         }
       }
     }

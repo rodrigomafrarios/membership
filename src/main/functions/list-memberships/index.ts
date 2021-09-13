@@ -13,6 +13,10 @@ export default {
       http: {
         method: 'get',
         path: 'memberships/list/{organizationId}',
+        authorizer: {
+          arn: '${ssm:${self:custom.stage}-orguser-authorizer}',
+          resultTtlInSeconds: 0
+        },
         request: {
           parameters: {
             paths: {

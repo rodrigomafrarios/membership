@@ -1,10 +1,10 @@
 {
   "swagger" : "2.0",
   "info" : {
-    "version" : "2021-09-10T21:01:06Z",
+    "version" : "2021-09-13T12:29:54Z",
     "title" : "membership-dev"
   },
-  "host" : "eqcuvhxxjh.execute-api.us-east-1.amazonaws.com",
+  "host" : "j5ddt7tkk3.execute-api.us-east-1.amazonaws.com",
   "basePath" : "/dev",
   "schemes" : [ "https" ],
   "paths" : {
@@ -28,7 +28,21 @@
         "responses" : { }
       }
     },
-    "/membership" : {
+    "/login" : {
+      "post" : {
+        "consumes" : [ "application/json" ],
+        "parameters" : [ {
+          "in" : "body",
+          "name" : "login",
+          "required" : true,
+          "schema" : {
+            "$ref" : "#/definitions/login"
+          }
+        } ],
+        "responses" : { }
+      }
+    },
+    "/membership/create" : {
       "post" : {
         "consumes" : [ "application/json" ],
         "parameters" : [ {
@@ -56,7 +70,7 @@
         "responses" : { }
       }
     },
-    "/organization" : {
+    "/organization/create" : {
       "post" : {
         "consumes" : [ "application/json" ],
         "parameters" : [ {
@@ -95,7 +109,7 @@
         } ]
       }
     },
-    "/user" : {
+    "/user/create" : {
       "post" : {
         "consumes" : [ "application/json" ],
         "parameters" : [ {
@@ -162,26 +176,26 @@
     }
   },
   "definitions" : {
+    "login" : {
+      "type" : "object",
+      "required" : [ "email", "password" ],
+      "properties" : {
+        "password" : {
+          "type" : "string"
+        },
+        "email" : {
+          "type" : "string"
+        }
+      }
+    },
     "addMembership" : {
       "type" : "object",
-      "required" : [ "organizationId" ],
+      "required" : [ "organizationId", "userId" ],
       "properties" : {
         "organizationId" : {
           "type" : "string"
         },
         "userId" : {
-          "type" : "string"
-        }
-      }
-    },
-    "addOrganization" : {
-      "type" : "object",
-      "required" : [ "name", "organizationId" ],
-      "properties" : {
-        "organizationId" : {
-          "type" : "string"
-        },
-        "name" : {
           "type" : "string"
         }
       }
@@ -197,6 +211,18 @@
           "type" : "string"
         },
         "email" : {
+          "type" : "string"
+        }
+      }
+    },
+    "addOrganization" : {
+      "type" : "object",
+      "required" : [ "name", "organizationId" ],
+      "properties" : {
+        "organizationId" : {
+          "type" : "string"
+        },
+        "name" : {
           "type" : "string"
         }
       }

@@ -14,9 +14,10 @@ export default {
     {
       http: {
         method: 'post',
-        path: 'user',
+        path: 'user/create',
         authorizer: {
-          arn: '${ssm:${self:custom.stage}-sysadmin-authorizer}'
+          arn: '${ssm:${self:custom.stage}-sysadmin-authorizer}',
+          resultTtlInSeconds: 0
         },
         request: {
           schema: {

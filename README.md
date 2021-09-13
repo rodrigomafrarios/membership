@@ -2,6 +2,8 @@
 Example of membership.
 
 <b><h2>Endpoints</h2></b>
+- Login
+
 - Create user
 - List users
 - Load user by id
@@ -75,3 +77,21 @@ terraform init
 terraform plan
 terraform apply -auto-approve
 </pre>
+
+---
+
+<b><h2>Test</h2></b>
+
+1) /login POST
+
+<pre>
+{
+    "email": "hate_frampton@gmail.com",
+    "password": "123"
+}
+</pre>
+
+
+2) Get token and fill Authorization header
+
+obs: this user is a SYSADMIN

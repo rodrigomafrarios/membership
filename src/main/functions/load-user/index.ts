@@ -14,7 +14,8 @@ export default {
         method: 'get',
         path: 'user/{userId}',
         authorizer: {
-          arn: '${ssm:${self:custom.stage}-orguser-authorizer}'
+          arn: '${ssm:${self:custom.stage}-orguser-authorizer}',
+          resultTtlInSeconds: 0
         },
         request: {
           parameters: {
